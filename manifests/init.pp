@@ -40,29 +40,12 @@
 #
 #
 class ispconfig_zendopcache (
-  $ensure                   = present,
-  $version                  = '',
-  $memory_consumption       = '128',
-  $interned_strings_buffer  = '8',
-  $max_accelerated_files    = '4000',
-  $revalidate_freq          = '60',
-  $fast_shutdown            = '1',
-  $enable_cli               = '1',
-  $cluster                  = $cluster,
-  $clusterdomain            = $clusterdomain,
-  $clusterslaves            = $clusterslaves,
+  $cluster        = $cluster,
+  $clusterdomain  = $clusterdomain,
+  $clusterslaves  = $clusterslaves,
   ) {
 
-  class { 'php5::zendopcache' :
-    ensure                  => $ensure,
-    version                 => $version,
-    memory_consumption      => $memory_consumption,
-    interned_strings_buffer => $interned_strings_buffer,
-    max_accelerated_files   => $max_accelerated_files,
-    revalidate_freq         => $revalidate_freq,
-    fast_shutdown           => $fast_shutdown,
-    enable_cli              => $enable_cli
-  }
+  include softec_php::opcache
 
   file { "/var/www/cluster.${cluster}.${clusterdomain}/web/opcache.php":
     ensure  => present,
