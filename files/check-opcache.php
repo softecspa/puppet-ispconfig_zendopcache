@@ -1,5 +1,5 @@
 <?php
-# TODO: 
+# TODO:
 # - manage multiple warn/criticals on different values monitored
 # - add parameters for warn and crit values
 #
@@ -84,8 +84,8 @@ if ($memory_usage_perc > $memory_usage_perc_crit) {
   $result_status    = 1;
   $result_message   = "WARNING - $basic_info memory usage percentage is over warning level ".($memory_usage_perc*100).'%';
 }
-$opcache_hit_rate       = $values['opcache_hit_rate'];
-$opcache_hit_rate_warn  = 0.8;
+$opcache_hit_rate       = round($values['opcache_hit_rate']);
+$opcache_hit_rate_warn  = 0.5;
 $opcache_hit_rate_crit  = 0.9;
 if ($opcache_hit_rate < $opcache_hit_rate_crit) {
   $result_status    = 2;
